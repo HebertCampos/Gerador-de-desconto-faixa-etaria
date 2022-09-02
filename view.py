@@ -23,9 +23,18 @@ col1 = sg.Column(
     ]
 )
 
+col2 = sg.Column(
+    [
+        [sg.Frame('Tabela Simulada', [
+            [sg.Output(size=(160, 27), key='_output_', font='courier 8', )]
+        ])]
+    ]
+)
+
 layout = [
     [sg.Text('Simulador do Valor da Taxa de Adesão', font='26')],
-    [col1]
+    [col1],
+    [col2]
 ]
 
 win = sg.Window('Tabela de Simulação Taxa de Adesão', layout, resizable=True)
