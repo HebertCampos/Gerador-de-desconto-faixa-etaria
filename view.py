@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+from controls.inclusao_nova_idade import geracao_da_lista, verifica_se_e_titular
+
 sg.theme('Reddit')
 
 idades = []
@@ -43,3 +45,13 @@ while True:
     eventos, valores = win.read()
     if eventos == sg.WINDOW_CLOSED:
         break
+    
+    if eventos == 'Incluir':
+        titular = verifica_se_e_titular(idades, titular)
+        listas = geracao_da_lista(valores['INP-idade'], titular, lista_ben,idades)
+        try:
+            win['INP-idade'].Update('')
+        except:
+            pass
+        win['-OUT-listBen'].update(listas[0])
+        
