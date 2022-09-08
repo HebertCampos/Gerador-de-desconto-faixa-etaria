@@ -81,5 +81,20 @@ while True:
         except:
             sg.popup_error('Escolha um beneficiario!')
 
+    if eventos == 'Editar Idade':
+        try:
+            id = lista_ben.index(valores['-OUT-listBen'][0])
+            idadeNova=sg.popup_get_text('Modificar idade', size=(3,1))
+            if idadeNova.isdigit() and idadeNova != '':
+                idade = int(idadeNova)
+                if idade <= 100 and idade >= 0 :
+                    if id == 0:
+                        lista_ben[id] = f'Titular             {idade:02d} anos'
+                    else: lista_ben[id] = f'Dependente    {idade:02d} anos'
+                    idades[id] = idade
+                    win['-OUT-listBen'].update(lista_ben)
+                else: sg.popup_error('Só é permitida idade até 100 anos!')
+            else: sg.popup_error('Digite uma IDADE valida!')
+        except:
+            sg.popup_error('Escolha um beneficiário da lista!')
 
-        
