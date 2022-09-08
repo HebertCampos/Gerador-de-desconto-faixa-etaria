@@ -69,5 +69,17 @@ while True:
         except IndexError:
             sg.popup_error('Escolha um beneficiario da lista!')
 
+    if eventos == 'Limpar':
+        try:
+            pop = sg.popup_ok_cancel('Certeza que deseja limpar todos beneficiários?')
+            if pop == 'OK':
+                lista_ben = []
+                idades = []
+                win['-OUT-listBen'].update(lista_ben)
+                win['-parcelas-'].update('12')
+                win.FindElement('_output_').Update('')
+        except:
+            sg.popup_error('Escolha um beneficiario!')
+
 
         
