@@ -55,3 +55,19 @@ while True:
             pass
         win['-OUT-listBen'].update(listas[0])
         
+    if eventos == 'Deletar':
+        try:
+            id = lista_ben.index(valores['-OUT-listBen'][0])
+            if titular == 'No' and id == 0:
+                sg.popup_error('Não é possível apagar o titular!\n\nTente alterar a idade ou limpar a lista!')
+            else:
+                pop_confirm = sg.popup_ok_cancel('Certeza que deseja excluir este beneficiário?')
+                if pop_confirm == 'OK': 
+                    del lista_ben[id]
+                    del idades[id]
+                    win['-OUT-listBen'].update(lista_ben)
+        except IndexError:
+            sg.popup_error('Escolha um beneficiario da lista!')
+
+
+        
