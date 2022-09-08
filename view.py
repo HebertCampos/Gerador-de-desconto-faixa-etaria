@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from controls.calculo_desconto import main_desconto
 
 from controls.inclusao_nova_idade import geracao_da_lista, verifica_se_e_titular
 
@@ -98,3 +99,8 @@ while True:
         except:
             sg.popup_error('Escolha um beneficiário da lista!')
 
+    if eventos == 'Simular':
+        if len(idades) != 0:
+            win.FindElement('_output_').Update('')
+            divParcelas = int(valores['-parcelas-'])
+            result = main_desconto(idades, titular, valCotas = 1000)
