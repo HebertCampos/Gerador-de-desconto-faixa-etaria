@@ -104,3 +104,4 @@ while True:
             win.FindElement('_output_').Update('')
             divParcelas = int(valores['-parcelas-'])
             result = main_desconto(idades, titular, valCotas = 1000)
+            print(result)
