@@ -42,6 +42,17 @@ def define_faixa(idade):
     val = [cota, desconto, fe]
     return val
 
+def valor_da_taxa_desc_idade(valCota, descCota):
+    txAdesao = descCota[0] * 15
+    taxa = txAdesao * valCota * descCota[1]
+    return taxa
+
+def desconto_joia_dep_menor(idades):
+    desc = 0
+    for i in idades:
+        if i <=38:
+            desc += 0.2
+    return desc
 
 def main_desconto(idades, titular, valCotas):
     if titular == 'No' and idades[0] <= 38:
@@ -50,6 +61,10 @@ def main_desconto(idades, titular, valCotas):
     idade = idades[:]
     idade.sort(reverse = True)
     faixaEtaria = [define_faixa(i) for i in idade]
+    mensalidade = [faixaEtaria[m][0] * valCotas for m in range(len(faixaEtaria))]
+    valorDaTaxa = [fe[0]*15*valCotas for fe in faixaEtaria]
+    valorDaTaxaDescIdade = [valor_da_taxa_desc_idade(valCotas, fe) for fe in faixaEtaria]
+    descontosDependente = desconto_joia_dep_menor(idades) - desconto
     
-    result = zip(idade, faixaEtaria)
-    return tuple(result)
+    result = zip(idade, faixaEtaria, mensalidade, valorDaTaxa, valorDaTaxaDescIdade)
+    return list(result)
